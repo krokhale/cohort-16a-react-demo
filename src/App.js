@@ -1,25 +1,107 @@
+// This session is all about a react component
+// Class based components
+// functional Components | react hooks
 import logo from './logo.svg';
 import './App.css';
+import {useState, useEffect} from 'react' //Both of these are just hooks
 
 function App() {
+
+    // useEffect(() => {
+    //     console.log('run this code only on page load')
+    //     // console.log('run this code only when certain things in the deps list changes')
+    // }, [])
+
+    const [counter, setCounter] = useState(0);
+    const [toDoList, setToDoList] = useState(['Item one', 'Item two']);
+
+    const [itemText, setItemText] = useState('');
+
+    const incrementCounter = async () => {
+        let newCounter = counter + 1 // I have made a copy of the counter state variable.
+                                     // NOT updating the counter directly
+        console.log(newCounter)
+        setCounter(newCounter)
+    };
+
+    const updateInputValue = async (event) => {
+        console.log(event.currentTarget.value)
+        setItemText(event.currentTarget.value)
+
+    };
+
+    const addItem = async () => {
+        setToDoList([...toDoList, itemText])
+        setItemText('')
+    };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+      <div>
+
+          <br/>
+          <br/>
+          <input value={itemText} onChange={updateInputValue} type="text" />&nbsp;&nbsp;
+          <button onClick={addItem}>Add item</button>
+          <br/>
+          <br/>
+          <br/>
+
+          <ul>
+              {toDoList.map((item, idx) => {
+                  return <li key={idx}>{item}</li>
+              })}
+          </ul>
+
+          <br/>
+          <br/>
+          <p>Current Value of the item text is: {itemText}</p>
+
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <button onClick={incrementCounter}>Click me</button>
+
+          <p>The current Click count is: {counter}</p>
+
+          {/*ternary operator*/}
+
+          <h1 style={counter==5 ? {color: 'red'} : {color: 'green'}}>Hello World!</h1>
+
+          {/*Boolean Operators AND OR */}
+
+          {counter==10 && <h2>Hello World 10!</h2>}
+
+
+          {counter==7 && <h3>Hello World 7!</h3>}
+
+          {((counter==7) || (counter==10)) && <h1>Hello World 10! or 7!</h1>}
+          {/*<h4 style={{color: 'red'}}>Hello World</h4>*/}
+        {/*Hello world*/}
+      </div>
+
   );
 }
 
 export default App;
+
+
+
+// <div className="App" style={{marginTop: '10px'}}>
+//   {/*JSX Not HTML*/}
+//   <header className="App-header">
+//     <img src={logo} className="App-logo" alt="logo" />
+//     <p>
+//       Edit <code>src/App.js</code> and save to reload.
+//     </p>
+//     <a
+//         className="App-link"
+//         href="https://reactjs.org"
+//         target="_blank"
+//         rel="noopener noreferrer"
+//     >
+//       Learn React
+//     </a>
+//   </header>
+// </div>
