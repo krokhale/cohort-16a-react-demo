@@ -3,7 +3,8 @@
 // functional Components | react hooks
 import logo from './logo.svg';
 import './App.css';
-import {useState, useEffect} from 'react' //Both of these are just hooks
+import {useState, useEffect} from 'react'
+import MyButton from "./my-button"; //Both of these are just hooks
 
 function App() {
 
@@ -47,6 +48,19 @@ function App() {
           <br/>
           <br/>
 
+          <div className={'flex justify-center'}>
+              {/*props*/}
+              <MyButton buttonText={'Continue'} color={'red'} rounded={true} />&nbsp;&nbsp;
+
+              <MyButton buttonText={'Submit number '+counter} rounded={true} />&nbsp;&nbsp;
+
+              <MyButton buttonText={'Place Order'} color={'red'} />&nbsp;&nbsp;
+
+              <MyButton />
+          </div>
+
+
+
           <ul>
               {toDoList.map((item, idx) => {
                   return <li key={idx}>{item}</li>
@@ -61,7 +75,7 @@ function App() {
           <br/>
           <br/>
           <br/>
-          <button onClick={incrementCounter}>Click me</button>
+          <button className={'border'} onClick={incrementCounter}>Click me</button>
 
           <p>The current Click count is: {counter}</p>
 
