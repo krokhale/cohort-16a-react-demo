@@ -1,3 +1,10 @@
+// Installing nvm/nodejs on your system
+// Using create react app to create a basic react application
+// Understanding how a react application boots up
+// Understand a single component and how it works including useState and useEffect
+// Understanding how a parent component passes information to the child component
+// Understanding how the child passes information to the parent.
+
 import React, {useState, useEffect} from 'react';
 
 function MyButton(props) {
@@ -26,7 +33,7 @@ function MyButton(props) {
     return (
         <>
             {/*ternary operator*/}
-            <button className={setClasses()}>{props.buttonText || 'Submit'}</button>
+            <button onClick={() => props.myFunc(45)} className={setClasses()}>{props.buttonText || 'Submit'}</button>
         </>
     );
 }

@@ -4,7 +4,8 @@
 import logo from './logo.svg';
 import './App.css';
 import {useState, useEffect} from 'react'
-import MyButton from "./my-button"; //Both of these are just hooks
+import MyButton from "./my-button";
+import MenuItem from "./menu-item"; //Both of these are just hooks
 
 function App() {
 
@@ -15,6 +16,22 @@ function App() {
 
     const [counter, setCounter] = useState(0);
     const [toDoList, setToDoList] = useState(['Item one', 'Item two']);
+
+    const [menuItems, setMenuItems] = useState([
+        'Installation',
+        'Main Concepts',
+        'Advanced Guides',
+        'Hooks',
+    ]);
+
+    const [buttonItems, setButtonItems] = useState([
+        {text: 'Continue', rounded: true, color: 'red'},
+        {text: 'Submit'},
+        {text: 'Sign Up', rounded: true},
+    ]);
+
+
+    // Loop over the buttonItems and render the button component for each item in the array
 
     const [itemText, setItemText] = useState('');
 
@@ -36,6 +53,12 @@ function App() {
         setItemText('')
     };
 
+    const executeThisFunctionWhenButtonIsClicked = async (num) => {
+        console.log('the number received from the child is', num)
+        alert(`the number received from the child is ${num}`)
+
+    };
+
   return (
 
       <div>
@@ -48,18 +71,38 @@ function App() {
           <br/>
           <br/>
 
+          {/*looping and child components*/}
+          {/*passing data from the child to the parent*/}
+
+
+
           <div className={'flex justify-center'}>
               {/*props*/}
-              <MyButton buttonText={'Continue'} color={'red'} rounded={true} />&nbsp;&nbsp;
+              <MyButton myFunc={executeThisFunctionWhenButtonIsClicked} buttonText={'Continue Now'} color={'red'} rounded={true} />&nbsp;&nbsp;
 
-              <MyButton buttonText={'Submit number '+counter} rounded={true} />&nbsp;&nbsp;
+              {/*<MyButton buttonText={'Submit number '+counter} rounded={true} />&nbsp;&nbsp;*/}
 
-              <MyButton buttonText={'Place Order'} color={'red'} />&nbsp;&nbsp;
+              {/*<MyButton buttonText={'Place Order'} color={'red'} />&nbsp;&nbsp;*/}
 
-              <MyButton />
+              {/*<MyButton />*/}
           </div>
 
 
+          {buttonItems.map((buttonItem, idx) => {
+              return <div key={idx} className={'p-4'}>
+                        <MyButton
+                               color={buttonItem.color}
+                               buttonText={buttonItem.text}
+                               rounded={buttonItem.rounded} />
+              </div>
+          })}
+
+
+
+          {menuItems.map((menuItem, idx) => {
+              return <MenuItem menuItemText={menuItem} />
+
+          })}
 
           <ul>
               {toDoList.map((item, idx) => {
