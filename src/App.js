@@ -6,6 +6,25 @@ import './App.css';
 import {useState, useEffect} from 'react'
 import MyButton from "./my-button";
 import MenuItem from "./menu-item"; //Both of these are just hooks
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+
+function Home() {
+    return <h1>We are on the Home page</h1>;
+}
+
+function About() {
+    return <h2>We are on the about page</h2>;
+}
+
+function Users() {
+    return <h2>We are on the users page</h2>;
+}
+
 
 function App() {
 
@@ -61,82 +80,116 @@ function App() {
 
   return (
 
-      <div>
+      <Router>
+          <div>
+              <nav>
+                  <ul>
+                      <li>
+                          <Link to="/">Home</Link>
+                      </li>
+                      <li>
+                          <Link to="/about">About</Link>
+                      </li>
+                      <li>
+                          <Link to="/users">Users</Link>
+                      </li>
+                  </ul>
+              </nav>
 
-          <br/>
-          <br/>
-          <input value={itemText} onChange={updateInputValue} type="text" />&nbsp;&nbsp;
-          <button onClick={addItem}>Add item</button>
-          <br/>
-          <br/>
-          <br/>
 
-          {/*looping and child components*/}
-          {/*passing data from the child to the parent*/}
+              {/*<div>*/}
+
+              {/*    <br/>*/}
+              {/*    <br/>*/}
+              {/*    <input value={itemText} onChange={updateInputValue} type="text" />&nbsp;&nbsp;*/}
+              {/*    <button onClick={addItem}>Add item</button>*/}
+              {/*    <br/>*/}
+              {/*    <br/>*/}
+              {/*    <br/>*/}
+
+              {/*    /!*looping and child components*!/*/}
+              {/*    /!*passing data from the child to the parent*!/*/}
 
 
 
-          <div className={'flex justify-center'}>
-              {/*props*/}
-              <MyButton myFunc={executeThisFunctionWhenButtonIsClicked} buttonText={'Continue Now'} color={'red'} rounded={true} />&nbsp;&nbsp;
+              {/*    <div className={'flex justify-center'}>*/}
+              {/*        /!*props*!/*/}
+              {/*        <MyButton myFunc={executeThisFunctionWhenButtonIsClicked} buttonText={'Continue Now'} color={'red'} rounded={true} />&nbsp;&nbsp;*/}
 
-              {/*<MyButton buttonText={'Submit number '+counter} rounded={true} />&nbsp;&nbsp;*/}
+              {/*        /!*<MyButton buttonText={'Submit number '+counter} rounded={true} />&nbsp;&nbsp;*!/*/}
 
-              {/*<MyButton buttonText={'Place Order'} color={'red'} />&nbsp;&nbsp;*/}
+              {/*        /!*<MyButton buttonText={'Place Order'} color={'red'} />&nbsp;&nbsp;*!/*/}
 
-              {/*<MyButton />*/}
+              {/*        /!*<MyButton />*!/*/}
+              {/*    </div>*/}
+
+
+              {/*    {buttonItems.map((buttonItem, idx) => {*/}
+              {/*        return <div key={idx} className={'p-4'}>*/}
+              {/*            <MyButton*/}
+              {/*                color={buttonItem.color}*/}
+              {/*                buttonText={buttonItem.text}*/}
+              {/*                rounded={buttonItem.rounded} />*/}
+              {/*        </div>*/}
+              {/*    })}*/}
+
+
+
+              {/*    {menuItems.map((menuItem, idx) => {*/}
+              {/*        return <MenuItem menuItemText={menuItem} />*/}
+
+              {/*    })}*/}
+
+              {/*    <ul>*/}
+              {/*        {toDoList.map((item, idx) => {*/}
+              {/*            return <li key={idx}>{item}</li>*/}
+              {/*        })}*/}
+              {/*    </ul>*/}
+
+              {/*    <br/>*/}
+              {/*    <br/>*/}
+              {/*    <p>Current Value of the item text is: {itemText}</p>*/}
+
+              {/*    <br/>*/}
+              {/*    <br/>*/}
+              {/*    <br/>*/}
+              {/*    <br/>*/}
+              {/*    <button className={'border'} onClick={incrementCounter}>Click me</button>*/}
+
+              {/*    <p>The current Click count is: {counter}</p>*/}
+
+              {/*    /!*ternary operator*!/*/}
+
+              {/*    <h1 style={counter==5 ? {color: 'red'} : {color: 'green'}}>Hello World!</h1>*/}
+
+              {/*    /!*Boolean Operators AND OR *!/*/}
+
+              {/*    {counter==10 && <h2>Hello World 10!</h2>}*/}
+
+
+              {/*    {counter==7 && <h3>Hello World 7!</h3>}*/}
+
+              {/*    {((counter==7) || (counter==10)) && <h1>Hello World 10! or 7!</h1>}*/}
+              {/*    /!*<h4 style={{color: 'red'}}>Hello World</h4>*!/*/}
+              {/*    /!*Hello world*!/*/}
+              {/*</div>*/}
+
+              {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+              <Switch>
+                  <Route path="/about">
+                      <About />
+                  </Route>
+                  <Route path="/users">
+                      <Users />
+                  </Route>
+                  <Route path="/">
+                      <Home />
+                  </Route>
+              </Switch>
           </div>
+      </Router>
 
-
-          {buttonItems.map((buttonItem, idx) => {
-              return <div key={idx} className={'p-4'}>
-                        <MyButton
-                               color={buttonItem.color}
-                               buttonText={buttonItem.text}
-                               rounded={buttonItem.rounded} />
-              </div>
-          })}
-
-
-
-          {menuItems.map((menuItem, idx) => {
-              return <MenuItem menuItemText={menuItem} />
-
-          })}
-
-          <ul>
-              {toDoList.map((item, idx) => {
-                  return <li key={idx}>{item}</li>
-              })}
-          </ul>
-
-          <br/>
-          <br/>
-          <p>Current Value of the item text is: {itemText}</p>
-
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <button className={'border'} onClick={incrementCounter}>Click me</button>
-
-          <p>The current Click count is: {counter}</p>
-
-          {/*ternary operator*/}
-
-          <h1 style={counter==5 ? {color: 'red'} : {color: 'green'}}>Hello World!</h1>
-
-          {/*Boolean Operators AND OR */}
-
-          {counter==10 && <h2>Hello World 10!</h2>}
-
-
-          {counter==7 && <h3>Hello World 7!</h3>}
-
-          {((counter==7) || (counter==10)) && <h1>Hello World 10! or 7!</h1>}
-          {/*<h4 style={{color: 'red'}}>Hello World</h4>*/}
-        {/*Hello world*/}
-      </div>
 
   );
 }
