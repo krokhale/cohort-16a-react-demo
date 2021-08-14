@@ -12,14 +12,17 @@ import {
     Route,
     Link
 } from "react-router-dom";
+import About from './About'
+import Todo from "./Todo";
+import Contact from "./Contact";
 
 function Home() {
     return <h1>We are on the Home page</h1>;
 }
 
-function About() {
-    return <h2>We are on the about page</h2>;
-}
+// function About() {
+//     return <h2>We are on the about page</h2>;
+// }
 
 function Users() {
     return <h2>We are on the users page</h2>;
@@ -82,16 +85,30 @@ function App() {
 
       <Router>
           <div>
-              <nav>
+              {/*<nav>*/}
+              {/*    <ul>*/}
+              {/*        <li>*/}
+              {/*            <Link to="/">Home</Link>*/}
+              {/*        </li>*/}
+              {/*        <li>*/}
+              {/*            <Link to="/about">About</Link>*/}
+              {/*        </li>*/}
+              {/*        <li>*/}
+              {/*            <Link to="/users">Users</Link>*/}
+              {/*        </li>*/}
+              {/*    </ul>*/}
+              {/*</nav>*/}
+
+              <nav className={'border p-2 bg-gray-900'}>
                   <ul>
-                      <li>
-                          <Link to="/">Home</Link>
+                      <li className={'inline p-2 text-white'}>
+                          <Link to="/">About</Link>
                       </li>
-                      <li>
-                          <Link to="/about">About</Link>
+                      <li className={'inline p-2 bg-blue-600 text-white'}>
+                          <Link to="/todo">Todo</Link>
                       </li>
-                      <li>
-                          <Link to="/users">Users</Link>
+                      <li className={'inline p-2 text-white'}>
+                          <Link to="/contact">Contact</Link>
                       </li>
                   </ul>
               </nav>
@@ -177,14 +194,14 @@ function App() {
               {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
               <Switch>
-                  <Route path="/about">
-                      <About />
+                  <Route path="/contact">
+                      <Contact />
                   </Route>
-                  <Route path="/users">
-                      <Users />
+                  <Route path="/todo">
+                      <Todo />
                   </Route>
                   <Route path="/">
-                      <Home />
+                      <About />
                   </Route>
               </Switch>
           </div>
