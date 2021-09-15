@@ -9,6 +9,8 @@ import React, {useState, useEffect} from 'react';
 
 function Todo(props) {
 
+    // CORS requests
+
     const [newItemText, setNewItemText] = useState('');
     const [items, setItems] = useState([
         {text: 'Go to the grocery', completed: false},
